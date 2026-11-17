@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#f0ebe0"/>
+  <!-- 기와지붕 모양 -->
+  <g fill="#154c43" opacity="0.3">
+    <!-- 지붕 곡선 -->
+    <path d="M50 200 Q200 100 350 200 L340 210 Q200 115 60 210 Z"/>
+    <path d="M70 220 Q200 130 330 220 L320 230 Q200 145 80 230 Z"/>
+    <!-- 기와 무늬 -->
+    <path d="M100 240 Q120 235 140 240 Q120 245 100 240Z"/>
+    <path d="M150 240 Q170 235 190 240 Q170 245 150 240Z"/>
+    <path d="M200 240 Q220 235 240 240 Q220 245 200 240Z"/>
+    <path d="M250 240 Q270 235 290 240 Q270 245 250 240Z"/>
+    <!-- 기둥 -->
+    <rect x="130" y="240" width="12" height="60" rx="2"/>
+    <rect x="258" y="240" width="12" height="60" rx="2"/>
+    <!-- 바닥 -->
+    <rect x="110" y="295" width="180" height="8" rx="2"/>
+  </g>
+  <text x="200" y="340" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#999">사진 준비 중</text>
+</svg>

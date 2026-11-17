@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#154c43" />
+  <meta name="description" content="서울 곳곳에 숨은 우리 유산을 찾아 떠나요! 초등학생을 위한 서울 국가유산 도감" />
+  <title>서울국가유산 탐사대</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- ═══ 헤더 ═══ -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="#" class="header__logo">
+        <span class="header__logo-mark">🏛️</span>
+        <span class="header__logo-text">서울국가유산 탐사대</span>
+      </a>
+      <button class="header__notebook-btn" id="notebookToggle" aria-label="내 탐사 수첩 열기">
+        <span>⭐</span> 내 탐사 수첩 (<span id="notebookCount">0</span>)
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══ 히어로 ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <span class="hero__kicker">SEOUL HERITAGE EXPEDITION</span>
+      <span class="hero__label">어린이 국가유산 도감</span>
+      <h1 class="hero__title">"우리 동네에 숨은 보물,<br/>함께 찾아볼까?"</h1>
+      <p class="hero__tagline">서울 곳곳에 숨은 우리 유산을 찾아서</p>
+      <div class="hero__steps">
+        <span class="hero__step">🔍 찾아보고</span>
+        <span class="hero__step-arrow">→</span>
+        <span class="hero__step">📖 살펴보고</span>
+        <span class="hero__step-arrow">→</span>
+        <span class="hero__step">🔗 출처까지 확인해요</span>
+      </div>
+      <a href="#explore" class="hero__cta">탐사 시작하기 ↓</a>
+    </div>
+  </section>
+
+  <!-- ═══ 오늘의 유산 ═══ -->
+  <section class="today" id="today">
+    <div class="today__inner">
+      <h2 class="section-title">🌟 오늘의 유산</h2>
+      <div class="today__card" id="todayCard">
+        <!-- JS에서 채움 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 탐사하기 ═══ -->
+  <section class="explore" id="explore">
+    <div class="explore__inner">
+      <h2 class="section-title">🔍 탐사하기</h2>
+
+      <!-- 검색창 -->
+      <div class="search-box">
+        <div class="search-box__input-wrap">
+          <span class="search-box__icon">🔍</span>
+          <input
+            type="text"
+            id="searchInput"
+            class="search-box__input"
+            placeholder="유산 이름을 써 보세요 (예: 경복궁, 숭례문, 향나무)"
+            autocomplete="off"
+          />
+          <button class="search-box__clear" id="searchClear" aria-label="검색어 지우기" style="display:none">✕</button>
+        </div>
+      </div>
+
+      <!-- 종목 필터 칩 -->
+      <div class="filter-chips" id="kindFilter" role="group" aria-label="종목 필터">
+        <button class="chip chip--active" data-kind="all">전체</button>
+        <button class="chip" data-kind="11">국보</button>
+        <button class="chip" data-kind="12">보물</button>
+        <button class="chip" data-kind="13">사적</button>
+        <button class="chip" data-kind="15">명승</button>
+        <button class="chip" data-kind="16">천연기념물</button>
+        <button class="chip" data-kind="17">무형유산</button>
+        <button class="chip" data-kind="18">민속문화유산</button>
+        <button class="chip" data-kind="79">등록문화유산</button>
+        <button class="chip" data-kind="seoul">서울시 지정</button>
+      </div>
+
+      <!-- 자치구 + 보기 옵션 -->
+      <div class="filter-row">
+        <div class="filter-row__select-wrap">
+          <label for="guSelect" class="sr-only">자치구 선택</label>
+          <select id="guSelect" class="filter-row__select">
+            <option value="all">전체 자치구</option>
+          </select>
+        </div>
+        <label class="filter-row__check">
+          <input type="checkbox" id="photoOnly" checked /> 사진 있는 것만 보기
+        </label>
+        <label class="filter-row__check">
+          <input type="checkbox" id="notebookOnly" /> 내 수첩에 담은 것만 보기
+        </label>
+      </div>
+
+      <!-- 결과 개수 -->
+      <p class="result-count" id="resultCount">🔍 유산을 불러오는 중…</p>
+
+      <!-- 카드 그리드 -->
+      <div class="card-grid" id="cardGrid">
+        <!-- JS에서 채움 -->
+      </div>
+
+      <!-- 결과 없음 -->
+      <div class="no-results" id="noResults" style="display:none">
+        <p class="no-results__text">앗, 찾는 유산이 없어요.<br/>다른 낱말로 찾아볼까요?</p>
+        <div class="no-results__suggestions">
+          <button class="no-results__btn" data-query="경복궁">경복궁</button>
+          <button class="no-results__btn" data-query="창덕궁">창덕궁</button>
+          <button class="no-results__btn" data-query="숭례문">숭례문</button>
+          <button class="no-results__btn" data-query="종묘">종묘</button>
+          <button class="no-results__btn" data-query="북한산">북한산</button>
+        </div>
+      </div>
+
+      <!-- 더 보기 -->
+      <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
+        <button class="load-more-btn" id="loadMoreBtn">더 보기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 탐사 팁 박스 ═══ -->
+  <section class="tips">
+    <div class="tips__inner">
+      <h3 class="tips__title">💡 "'멋지다!'에서 한 걸음 더"</h3>
+      <p class="tips__text">
+        설명을 그대로 베끼지 말고, 내가 알게 된 것을 <strong>내 말로 바꿔 써 보세요</strong>.<br/>
+        그리고 어디에서 찾았는지(<strong>출처</strong>)도 꼭 함께 적어요!
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ 상세 모달 ═══ -->
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="유산 상세 정보">
+      <button class="modal__close" id="modalClose" aria-label="닫기">✕</button>
+      <div class="modal__body" id="modalBody">
+        <!-- JS에서 채움 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 탐사 수첩 패널 ═══ -->
+  <div class="notebook-overlay" id="notebookOverlay"></div>
+  <aside class="notebook-panel" id="notebookPanel" aria-label="내 탐사 수첩">
+    <div class="notebook-panel__header">
+      <h3>⭐ 내 탐사 수첩</h3>
+      <button class="notebook-panel__close" id="notebookClose" aria-label="수첩 닫기">✕</button>
+    </div>
+    <p class="notebook-panel__notice">수첩은 이 기기의 브라우저에만 저장돼요.</p>
+    <div class="notebook-panel__list" id="notebookList">
+      <!-- JS에서 채움 -->
+    </div>
+  </aside>
+
+  <!-- ═══ 푸터 ═══ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p>
+        자료 출처:
+        <a href="https://www.khs.go.kr/html/HtmlPage.do?mn=NS_04_04_03&pg=%2Fpublicinfo%2Fpbinfo3_0201.jsp" target="_blank" rel="noopener noreferrer">
+          국가유산청 국가유산 공개 API
+        </a>
+        (공공누리 출처표시)
+      </p>
+      <p>정보 확인일: <span id="updatedAt">-</span></p>
+      <p>관람 시간·요금은 방문 전에 공식 사이트에서 꼭 확인하세요.</p>
+      <button class="footer__source-btn" id="sourceInfoBtn">사진·자료 출처 보기 ↗</button>
+    </div>
+  </footer>
+
+  <!-- ═══ 출처 안내 모달 ═══ -->
+  <div class="source-modal-overlay" id="sourceModalOverlay" aria-hidden="true">
+    <div class="source-modal" role="dialog" aria-modal="true" aria-label="출처 안내">
+      <button class="source-modal__close" id="sourceModalClose" aria-label="닫기">✕</button>
+      <h3>📋 사진·자료 출처 안내</h3>
+      <ul>
+        <li>모든 유산 정보와 사진은 <strong>국가유산청 공개 API</strong>에서 제공받았습니다.</li>
+        <li>사진 저작권은 국가유산청에 있으며, <strong>공공누리 제1유형(출처표시)</strong>에 따라 이용합니다.</li>
+        <li>공식 사이트:
+          <a href="https://www.heritage.go.kr" target="_blank" rel="noopener noreferrer">국가유산포털</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
